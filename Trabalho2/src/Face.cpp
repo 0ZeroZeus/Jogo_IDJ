@@ -3,20 +3,20 @@
 Face::Face(GameObject* associated) : Component(associated){
 	hitpoints = 30;
 }
-Face::~Face();
+Face::~Face(){}
 void Face::Damage(int damage){
 	hitpoints -= damage;
 	if (hitpoints <= 0){
 		associated->RequestDelete();
-		Sound* aux = associated->GetComponent("sound");
+		Sound* aux = (Sound*) associated->GetComponent("sound");
 		if (aux != nullptr){
 			aux->Play(1);
 		}
 	}
 }
-void Face::Update(float dt);
-void Face::Render();
+void Face::Update(float dt){}
+void Face::Render(){}
 bool Face::Is(string type){
-	return(type == "face");
+	return(type == "Face");
 }
 

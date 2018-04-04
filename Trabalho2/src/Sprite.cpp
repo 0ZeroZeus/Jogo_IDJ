@@ -2,19 +2,20 @@
 #define INCLUDE_SDL_MIXER
 #include "Game.h"
 
-Sprite::Sprite() : Component(associated){
+Sprite::Sprite(GameObject* associated) : Component(associated){
 
 
 	texture = nullptr;
 }
 
-Sprite::Sprite(string file) : Component(associated){
+Sprite::Sprite(GameObject* associated, string file) : Component(associated){
 	texture = nullptr;
 	Open(file);
 }
 
 Sprite::~Sprite(){
-	SDL_DestroyTexture(texture);
+	if (texture != nullptr)
+		SDL_DestroyTexture(texture);
 }
 
 void Sprite::Open(string file){
@@ -65,7 +66,8 @@ bool Sprite::IsOpen(){
 		return(true);
 }
 
-void Sprite::Render();
+void Sprite::Update(float dt){}
+
 bool Sprite::Is(string type){
 	return(type == "sprite");
 }

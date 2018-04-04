@@ -5,7 +5,7 @@
 State::State(){
 
 	quitRequested = false;
-	music.Open("assets/music/stageState.ogg");
+	music.Open("assets/audio/stageState.ogg");
 	music.Play(-1);
 }
 
@@ -17,23 +17,32 @@ bool State::QuitRequested(){
 	return(quitRequested);
 }
 void State::LoadAssets(){
-	bg.Open("assets/img/ocean.jpg");
+
+	GameObject* aux = new GameObject();
+
+	Sprite* bg = new Sprite(aux, "assets/img/ocean.jpg");
+
+	aux->Box.x = 0;
+	aux->Box.y = 0;
+
+	aux->AddComponent(bg);
+
+	ObjectArray.emplace_back(aux);
 }
 void State::Update(float dt){
 	Input();
 	for (int i = 0; i < ObjectArray.size(); ++i){
-		ObjectArray[i].Update(0);
+		ObjectArray[i]->Update(0);
 	}
 	for (int i = 0; i < ObjectArray.size(); ++i){
-		if(ObjectArray[i].IsDead()){
+		if(ObjectArray[i]->IsDead()){
 			ObjectArray.erase(ObjectArray.begin()+i);
 		}
 	}
 }
 void State::Render(){
-	bg.Render();
 	for (int i = 0; i < ObjectArray.size(); ++i){
-		ObjectArray[i].Render();
+		ObjectArray[i]->Render();
 	}
 }
 
@@ -56,16 +65,16 @@ void State::Input() {
 		if(event.type == SDL_MOUSEBUTTONDOWN) {
 
 			// Percorrer de trás pra frente pra sempre clicar no objeto mais de cima
-			for(int i = objectArray.size() - 1; i >= 0; --i) {
+			for(int i = ObjectArray.size() - 1; i >= 0; --i) {
 				// Obtem o ponteiro e casta pra Face.
-				GameObject* go = (GameObject*) objectArray[i].get();
+				GameObject* go = (GameObject*) ObjectArray[i].get();
 				// Nota: Desencapsular o ponteiro é algo que devemos evitar ao máximo.
 				// O propósito do unique_ptr é manter apenas uma cópia daquele ponteiro,
 				// ao usar get(), violamos esse princípio e estamos menos seguros.
 				// Esse código, assim como a classe Face, é provisório. Futuramente, para
 				// chamar funções de GameObjects, use objectArray[i]->função() direto.
 
-				if(go->box.Contains( {(float)mouseX, (float)mouseY} ) ) {
+				if(go->Box.Contains( (float)mouseX, (float)mouseY ) ) {
 					Face* face = (Face*)go->GetComponent( "Face" );
 					if ( nullptr != face ) {
 						// Aplica dano
@@ -94,19 +103,23 @@ void State::AddObject(int mouseX, int mouseY){
 
 	GameObject* aux = new GameObject();
 
-	Sprite* img = new Sprite("assets/img/penguinface.png") : Component(aux);
+	Sprite* img = new Sprite(aux, "assets/img/penguinface.png");
 
 	aux->AddComponent(img);
 
-	aux->Box.x = mouseX;
-	aux->Box.y = mouseY;
+	aux->Box.w = img->GetWidth();
+	aux->Box.h = img->GetHeight();
 	//compensar
+	aux->Box.x = mouseX - (aux->Box.w/2);
+	aux->Box.y = mouseY - (aux->Box.h/2);
 
-	Sound* snd = new Sound("assets/sound/boom.wav") : Component(aux);
+	Sound* snd = new Sound(aux,"assets/audio/boom.wav");
 
 	aux->AddComponent(snd);
 
 	Face* cara = new Face(aux);
+
+	aux->AddComponent(cara);
 
 	ObjectArray.emplace_back(aux);
 

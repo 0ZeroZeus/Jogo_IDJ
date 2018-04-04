@@ -11,8 +11,8 @@ class Music{
         Music(string file);
         ~Music();
         
-        void Play(int times);
-        void Stop(int msToStop);
+        void Play(int times = -1);
+        void Stop(int msToStop = 1500);
         void Open(string file);
         bool IsOpen();
 

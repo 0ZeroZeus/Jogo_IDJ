@@ -1,9 +1,10 @@
 #define INCLUDE_SDL
 #define INCLUDE_SDL_IMAGE
 #include "SDL_include.h"
-#include "Component.h"
+#include "Rect.h"
 #include <string>
 #include <vector>
+#include "Component.h"
 
 using namespace std;
 
@@ -18,7 +19,7 @@ class GameObject{
 		void AddComponent(Component* cpt);
 		void RemoveComponent(Component* cpt);
 		Component* GetComponent(string type);
-		SDL_Rect Box;
+		Rect Box;
 		
 	private:
 		bool isDead;

@@ -1,11 +1,11 @@
 #define INCLUDE_SDL
 #define INCLUDE_SDL_MIXER
 #include "SDL_include.h"
-#include "Component.h"
+#include "GameObject.h"
 #include <string>
 #include <vector>
 
-class Sound : Component{
+class Sound : public Component{
 
 public:
 	Sound(GameObject* associated);

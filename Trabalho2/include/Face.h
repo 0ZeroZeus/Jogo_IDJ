@@ -1,8 +1,8 @@
 #define INCLUDE_SDL
 #include "SDL_include.h"
-#include "Component.h"
+#include "Sound.h"
 
-class Face : Component{
+class Face : public Component{
 
 public:
 	
