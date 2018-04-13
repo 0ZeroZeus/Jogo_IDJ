@@ -14,7 +14,6 @@ class TileSet : public Component{
 		void Update(float dt);
 		void Render();
 		bool Is(string type);
-		void Start();
 
 		void RenderTile(unsigned index, float x, float y);
 		int GetTileWidth ();
