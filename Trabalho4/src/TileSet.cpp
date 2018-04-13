@@ -35,4 +35,3 @@ void TileSet::Render(){}
 bool TileSet::Is(string type){
 	return(type == "TIleSet");
 }
-void TileSet::Start(){}
