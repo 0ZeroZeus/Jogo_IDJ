@@ -38,7 +38,7 @@ void State::LoadAssets(){
 	aux2->Box.x = 0;
 	aux2->Box.y = 0;
 
-	TileSet* set = new TileSet(64, 64, "assets/img/tileset.png");
+	TileSet* set = new TileSet(aux, 64, 64, "assets/img/tileset.png");
 
 	TileMap* mapa = new TileMap(aux2,"assets/map/tileMap.txt", set);
 

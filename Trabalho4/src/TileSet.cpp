@@ -1,6 +1,6 @@
 #include "TileSet.h"
 
-TileSet::TileSet(int tileWidth, int tileHeight, string file){
+TileSet::TileSet(GameObject* associated, int tileWidth, int tileHeight, string file) : Component(associated){
 
 	this->tileWidth = tileWidth;
 	this->tileHeight = tileHeight;
@@ -29,3 +29,10 @@ int TileSet::GetTileWidth (){
 int TileSet::GetTileHeight(){
 	return(tileHeight);
 }
+
+void TileSet::Update(float dt){}
+void TileSet::Render(){}
+bool TileSet::Is(string type){
+	return(type == "TIleSet");
+}
+void TileSet::Start(){}

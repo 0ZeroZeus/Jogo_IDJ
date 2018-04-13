@@ -76,3 +76,9 @@ int TileMap::GetHeight(){
 int TileMap::GetDepth(){
 	return(mapDepth);
 }
+
+void TileMap::Update(float dt){}
+
+bool TileMap::Is(string type){
+	return(type == "TIleMap");
+}

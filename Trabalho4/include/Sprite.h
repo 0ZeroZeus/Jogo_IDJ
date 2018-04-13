@@ -12,12 +12,12 @@ using namespace std;
 
 class Sprite : public Component{
     public:
-        Sprite();
         Sprite(GameObject* associated);
         Sprite(GameObject* associated, string file);
         ~Sprite();
         void Open(string file);
         void SetClip(int x, int y, int w, int h);
+        void Update(float dt);
         void Render();
         void Render(int x, int y);
         int GetWidth();

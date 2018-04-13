@@ -1,14 +1,20 @@
 #include "Sprite.h"
+#include "Component.h"
+#include "GameObject.h"
 #include <cmath>
 
 #ifndef TILESET
 #define TILESET
 
-class TileSet{
+class TileSet : public Component{
 
 	public:
-		TileSet(int tileWidth, int tileHeight, string file);
+		TileSet(GameObject* associated, int tileWidth, int tileHeight, string file);
 		~TileSet();
+		void Update(float dt);
+		void Render();
+		bool Is(string type);
+		void Start();
 
 		void RenderTile(unsigned index, float x, float y);
 		int GetTileWidth ();
@@ -16,7 +22,7 @@ class TileSet{
 	
 	private:
 
-		Sprite tileSet;
+		Sprite tileSet = Sprite(associated);
 		int rows;
 		int columns;
 		int tileWidth;
