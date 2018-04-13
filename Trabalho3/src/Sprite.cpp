@@ -2,10 +2,6 @@
 #define INCLUDE_SDL_MIXER
 #include "Game.h"
 
-Sprite::Sprite() : Component(associated){
-	texture = nullptr;
-}
-
 Sprite::Sprite(GameObject* associated) : Component(associated){
 	texture = nullptr;
 }
@@ -76,3 +72,4 @@ bool Sprite::Is(string type){
 	return(type == "sprite");
 }
 
+void Sprite::Update(float dt){}

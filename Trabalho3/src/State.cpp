@@ -27,7 +27,7 @@ void State::LoadAssets(){
 
 	aux->AddComponent(bg);
 
-	TileSet* set = new TileSet(64, 64, "assets/img/tileset.png");
+	TileSet* set = new TileSet(aux, 64, 64, "assets/img/tileset.png");
 
 	TileMap* mapa = new TileMap(aux,"assets/map/tileMap.txt", set);
 
