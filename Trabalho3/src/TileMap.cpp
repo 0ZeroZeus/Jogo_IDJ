@@ -15,17 +15,12 @@ void TileMap::Load(string file){
 	string aux;
 	int ancora; 
 
-	if (mapa.good()){
-		SDL_Log("mapa is good");
-	}
-
 	getline(mapa,aux,',');
 	mapWidth = atoi(aux.c_str());
 	getline(mapa,aux,',');
 	mapHeight = atoi(aux.c_str());
 	getline(mapa,aux,',');
 	mapDepth = atoi(aux.c_str());
-	SDL_Log("numero lido: %d", mapDepth);
 
 	getline(mapa,aux,'\n');
 	while(getline(mapa,aux,',')){
@@ -35,23 +30,6 @@ void TileMap::Load(string file){
 	}
 	mapa.close();
 	
-
-	/*fp = fopen(file.c_str(),"r");
-
-	fscanf(fp,"%d,", &mapWidth);
-	fscanf(fp,"%d,", &mapHeight);
-	fscanf(fp,"%d,", &mapDepth);
-
-	while(fgetc(fp) != EOF){
-		fseek(fp, -1, SEEK_SET);
-		fscanf(fp,"%d,", &num);
-		SDL_Log("numero lido: %d", num);
-		num--;
-		tileMatrix.push_back(num);	
-	}
-
-	fclose(fp);*/
-
 }
 void TileMap::SetTileSet(TileSet* tileSet){
 	this->tileSet = tileSet;
